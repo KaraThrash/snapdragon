@@ -25,3 +25,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: Spaces Town
     m_Texture: {fileID: 2800000, guid: 77a8279d5fe534a0c9f82e79a99050d7, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4993858004042192069
+      m_GuidHigh: 10056389870870739076
+    m_SerializedTextureGuid:
+      m_GuidLow: 9364278668085850002
+      m_GuidHigh: 5118958403239241051
+    m_Size: {x: 0.15, y: 0.1361312}
+    m_SpecifySize: 1
+    m_Name: Pizza
+    m_Texture: {fileID: 2800000, guid: a5066f9299d581f45b6513dd8b310a47, type: 3}

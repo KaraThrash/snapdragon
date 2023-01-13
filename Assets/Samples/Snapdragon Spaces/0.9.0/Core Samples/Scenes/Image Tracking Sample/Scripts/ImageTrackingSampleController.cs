@@ -40,7 +40,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args) {
             foreach (var trackedImage in args.added) {
-                if (trackedImage.referenceImage.name == "Spaces Town")
+                if (trackedImage.referenceImage.name == "Spaces Town" || trackedImage.referenceImage.name == "Pizza")
                     _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
             }
 
