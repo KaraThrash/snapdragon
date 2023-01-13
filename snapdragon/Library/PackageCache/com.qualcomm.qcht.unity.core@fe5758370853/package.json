@@ -1,0 +1,25 @@
+{
+  "name": "com.qualcomm.qcht.unity.core",
+  "displayName": "QCHT Unity Core",
+  "version": "3.2.5",
+  "unity": "2020.3",
+  "unityRelease": "17f1",
+  "description": "The core package of Qualcomm HaT for Unity",
+  "author": "Qualcomm France | XR",
+  "keywords": [
+    "Qcht",
+    "HandTracking",
+    "Core"
+  ],
+  "samples": [
+    {
+      "displayName": "QCHT Raw Data sample",
+      "description": "Samples on how to display hand tracking raw data points.",
+      "path": "Samples~/QCHTRawData"
+    }
+  ],
+  "homepage": "",
+  "dependencies": {
+    "com.unity.inputsystem": "1.0.2"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "QCHT.Interactions.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ee340775873274a35aff8918caf6d584",
+        "GUID:b45beccc4e8e141cb8f9e6b2a8da6b3f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

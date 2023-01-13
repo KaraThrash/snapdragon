@@ -1,0 +1,238 @@
+{
+    "name": "HandSimulationInput",
+    "maps": [
+        {
+            "name": "HandEmulation",
+            "id": "5735c45e-60ca-4b58-946d-c902a3c03948",
+            "actions": [
+                {
+                    "name": "InsertLeftHand",
+                    "type": "Button",
+                    "id": "8487eeae-c135-48fb-926f-25980341629c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InsertRightHand",
+                    "type": "Button",
+                    "id": "11fc22de-843d-4a5f-980d-9c350541d9b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RemoveHands",
+                    "type": "Button",
+                    "id": "28d7eec4-4292-436d-995a-64ba7605090d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pinch",
+                    "type": "Button",
+                    "id": "4915b215-b038-498a-b4d1-3a9fb1d0edec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "dfc7d0d0-21a1-437f-ba01-de95aa3afcf0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Flip",
+                    "type": "Button",
+                    "id": "89e35888-3425-4fe3-941d-ed4e075b87aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReleaseHands",
+                    "type": "Button",
+                    "id": "fee50fd5-0ac2-4a82-9006-73217da48830",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "f9f95f3e-b0fb-4e28-8498-891af9c039dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseScroll",
+                    "type": "Value",
+                    "id": "8ca5e6c2-60d4-43e9-b12e-c7633c8bfe5e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "ButtonWithClick",
+                    "id": "97e69d8a-1861-47cc-8373-f0d8e941f3dd",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertLeftHand",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "button",
+                    "id": "8b7cf806-9795-48a7-b974-91f416d97259",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertLeftHand",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier",
+                    "id": "4e09af3b-577b-49f0-a7e2-45bd57dd88a3",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertLeftHand",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ButtonWithClick",
+                    "id": "e3d73b27-edfa-4141-b43e-a1f0e1e72ce1",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertRightHand",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "button",
+                    "id": "7979759e-2223-4073-9f22-bb1a249aeca7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertRightHand",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier",
+                    "id": "70708daf-4100-4120-bc8b-7c36c50fd3db",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InsertRightHand",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "989c199d-95a9-469d-8909-428d0b071f11",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RemoveHands",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cc38d99-835d-4a36-ba1b-8577f507c757",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cdfdf4f-a1f8-48c9-aa82-ce67d7f0398c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleaseHands",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2def5668-a813-4d49-90cf-73e1570d7b2a",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "115a0231-efbf-423f-9a5d-91ebd5d4a1f5",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20066839-3359-41e8-b055-fa0e234e0b94",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8bf2d7e-a543-421c-9f1c-90902b7cb92e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pinch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

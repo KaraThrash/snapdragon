@@ -1,0 +1,27 @@
+{
+    "name": "QCHT.Interactions",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ee340775873274a35aff8918caf6d584",
+        "GUID:1e9b7c7aecbc1437bac2cb57318c22ba",
+        "GUID:bd31b539b06424c089e0c5dd3507a4a8",
+        "GUID:02229f6652728da45838accf9ce93851",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.interaction.toolkit",
+            "expression": "",
+            "define": "UNITY_XR_TOOLKIT"
+        }
+    ],
+    "noEngineReferences": false
+}

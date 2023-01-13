@@ -1,0 +1,34 @@
+{
+    "name": "QCHT.Core",
+    "rootNamespace": "QCHT.Core",
+    "references": [
+        "GUID:b34e4e5646f58427587a42ad52e3a87e",
+        "GUID:02229f6652728da45838accf9ce93851",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:dc960734dc080426fa6612f1c5fe95f3",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:3157a9f7305fb47a7ae9d33699bc16f0",
+        "GUID:5e7012d466e434045ac4e3a510836ec0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+      {
+        "name": "com.unity.xr.interaction.toolkit",
+        "expression": "",
+        "define": "UNITY_XR_TOOLKIT"
+      },
+      {
+            "name": "com.qualcomm.qcht.unity.analytics",
+            "expression": "1.0.0",
+            "define": "QCHT_ANALYTICS"
+      }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Snapdragon.Spaces.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4847341ff46394e83bb78fbd0652937e",
+        "GUID:96aa6ba065960476598f8f643e7252b6",
+        "GUID:92703082f92b41ba80f0d6912de66115",
+        "GUID:e40ba710768534012815d3193fa296cb",
+        "GUID:f9fe0089ec81f4079af78eb2287a6163",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:a9420e37d7990b54abdef6688edbe313",
+        "GUID:ee340775873274a35aff8918caf6d584"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.qualcomm.qcht.unity.core",
+            "expression": "3.0.4",
+            "define": "QCHT_UNITY_CORE"
+        }
+    ],
+    "noEngineReferences": false
+}
