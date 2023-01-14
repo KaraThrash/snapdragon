@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class TextHoverPanel : MonoBehaviour
 {
 
-
+  public bool hover;
+  public float speed;
+  public float rotSpeed;
   public List<Text> textRows;
   public Transform observer;
   public Transform anchor;
@@ -22,7 +24,7 @@ public class TextHoverPanel : MonoBehaviour
   public Color blueHeader;
   public Color redHeader;
 
-  public Vector3 anchorOffser;
+  public Vector3 anchorOffset;
 
 
 
@@ -35,20 +37,51 @@ public class TextHoverPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hover)
+        {
+            Hover();
+
+        }
 
         if(Keyboard.current.spaceKey.isPressed )
         {
           SetColor(1);
-          Debug.Log("Fire!");
+          Debug.Log("Pressed");
 
             }else
           // if(Input.GetKeyUp("Space"))
           {
             Debug.Log("Dont!");
-            SetColor(0);
+            // SetColor(0);
 
           }
     }
+
+
+    public void Hover()
+    {
+      if(observer == null ){return;}
+
+
+
+      Vector3 hoverPosition = anchor.position + anchorOffset;
+      float dist = Vector3.Distance(hoverPosition,transform.position);
+
+      transform.position = Vector3.MoveTowards(transform.position, hoverPosition, Time.deltaTime * speed * dist);
+
+      Quaternion newRot = Quaternion.LookRotation(transform.position - observer.position);
+      transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime * rotSpeed * (1 + (dist * 0.1f)) );
+
+
+
+    }
+
+
+
+
+
+
+
 
     public void SetColor(int _format)
     {
