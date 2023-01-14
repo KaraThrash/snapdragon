@@ -16,6 +16,7 @@ public class Player : SampleController
 {
   private bool alternate;
   public float swipeDistance = 0.5f;
+  public float positionScale = 0.1f;
 
   public GameObject prefab_hoverPanel;
   public TextHoverPanel hoverPanel;
@@ -228,8 +229,8 @@ public void Swipe_Up()
     TextHoverPanel panel = activePanels[activePanels.Count - 1];
     activePanels.RemoveAt(activePanels.Count - 1);
     activePanels.Insert(0,panel);
-    panel.anchorOffset = new Vector3(panel.anchorOffset.x,panel.anchorOffset.y,1);
-    activePanels[activePanels.Count - 1].anchorOffset -= new Vector3(0,0,2);
+    panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y),panel.anchorOffset.z);
+
   }
 }
 public void Swipe_Down()
@@ -241,8 +242,7 @@ public void Swipe_Down()
     TextHoverPanel panel = activePanels[0];
     activePanels.RemoveAt(0);
     panel.anchorOffset = activePanels[activePanels.Count - 1].anchorOffset;
-    activePanels[activePanels.Count - 1].anchorOffset += new Vector3(0,0,2);
-    panel.anchorOffset += new Vector3(0,0,0.1f);
+    panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y) * -1,panel.anchorOffset.z);
     activePanels.Add(panel);
 
   }
@@ -255,6 +255,7 @@ public void Swipe_Left()
   if(activePanels != null && activePanels.Count > 0)
   {
     activePanels[activePanels.Count - 1].hover = false;
+    activePanels[activePanels.Count - 1].anchorOffset = Vector3.zero;
     activePanels[activePanels.Count - 1].gameObject.SetActive(false);
     activePanels.RemoveAt(activePanels.Count - 1);
   }
@@ -270,17 +271,19 @@ public void Swipe_Right()
   newPanel.observer = this.transform;
   newPanel.anchor = targetPerson;
 
+  newPanel.anchorOffset  = new Vector3(0,0,0);
+newPanel.NextStyle(activePanels.Count);
+
   if(alternate)
   {
-    newPanel.SetColor(1);
     newPanel.SetRowInformation(0,activePanels.Count.ToString());
 
-    newPanel.anchorOffset  += new Vector3(0,-(activePanels.Count + 1) * 2,-(activePanels.Count + 1));
+    newPanel.anchorOffset  += new Vector3(0,-(activePanels.Count + 1)* positionScale ,-(activePanels.Count + 1)* positionScale);
   }
   else
   {
       newPanel.SetRowInformation(0,"not " + activePanels.Count.ToString());
-      newPanel.anchorOffset  *= 1;
+      newPanel.anchorOffset  += new Vector3(0,(activePanels.Count + 1) *  positionScale ,-(activePanels.Count + 1)* positionScale);
       newPanel.SetColor(0);
 
   }

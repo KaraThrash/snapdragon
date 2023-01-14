@@ -4536,6 +4536,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: stage_left
       objectReference: {fileID: 0}
+    - target: {fileID: 5342421688317479122, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 46.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342421688317479122, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 26.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342421688317479123, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 715e244386243dc4e90200c5d1f573a6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
 --- !u!1 &5486433564210682427
