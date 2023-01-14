@@ -91,5 +91,10 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             yield return new WaitForSeconds(delay);
             profiles[0].SetActive(false);
         }
+
+        public void fakeFunction()
+        {
+            Debug.Log("I am hungry");
+        }
     }
 }
