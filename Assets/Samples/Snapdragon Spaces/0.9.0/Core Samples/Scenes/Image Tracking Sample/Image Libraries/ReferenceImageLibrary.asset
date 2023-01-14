@@ -16,12 +16,12 @@ MonoBehaviour:
   m_GuidHigh: 3772484369985291432
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5258779839654437431
-      m_GuidHigh: 17875128022805066635
+      m_GuidLow: 5182752949700967050
+      m_GuidHigh: 8372590211789320086
     m_SerializedTextureGuid:
-      m_GuidLow: 3792136325405616029
-      m_GuidHigh: 15515059773848352969
-    m_Size: {x: 0.18380843, y: 0.26}
-    m_SpecifySize: 1
-    m_Name: Spaces Town
-    m_Texture: {fileID: 2800000, guid: 77a8279d5fe534a0c9f82e79a99050d7, type: 3}
+      m_GuidLow: 10156861576226316636
+      m_GuidHigh: 8269363652671095801
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Pizza
+    m_Texture: {fileID: 0}

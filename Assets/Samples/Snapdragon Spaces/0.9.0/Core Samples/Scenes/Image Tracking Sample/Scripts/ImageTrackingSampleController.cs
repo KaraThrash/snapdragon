@@ -17,6 +17,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 {
     public class ImageTrackingSampleController : SampleController
     {
+        public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
 
         [Serializable]
@@ -40,8 +41,11 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args) {
             foreach (var trackedImage in args.added) {
-                if (trackedImage.referenceImage.name == "Spaces Town")
+                if (trackedImage.referenceImage.name == "Pizza")
+                {
                     _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
+                    profiles[0].SetActive(false);
+                }    
             }
 
             foreach (var trackedImage in args.updated) {
@@ -55,6 +59,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
 
             foreach (var trackedImage in args.removed) {
+                profiles[0].SetActive(true);
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
                 info.TrackingStatusText.text = "None";
                 info.PositionTexts[0].text = "0.00";
