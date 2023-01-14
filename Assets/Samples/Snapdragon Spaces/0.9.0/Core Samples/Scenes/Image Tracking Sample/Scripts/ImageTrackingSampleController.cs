@@ -17,6 +17,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 {
     public class ImageTrackingSampleController : SampleController
     {
+        public float timer;
+
+        private float panelSpeed = 1.0f;
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
 
@@ -41,16 +44,23 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args) {
             foreach (var trackedImage in args.added) {
+                _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
-                    _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
-                    profiles[0].SetActive(false);
+                    profiles[0].SetActive(true);
                 }    
             }
 
             foreach (var trackedImage in args.updated) {
                 Vector3 position = trackedImage.transform.position;
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
+
+                var step = panelSpeed * Time.deltaTime; //calculate distance to move
+                if (trackedImage.referenceImage.name == "Pizza")
+                {
+                    profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                }
+                //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
 
                 info.TrackingStatusText.text = trackedImage.trackingState.ToString();
                 info.PositionTexts[0].text = position.x.ToString("#0.00");
@@ -59,7 +69,12 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
 
             foreach (var trackedImage in args.removed) {
-                profiles[0].SetActive(true);
+                timer += Time.deltaTime;
+                if (timer > 1.0f)
+                {
+                    timer = 0f;
+                    profiles[0].SetActive(false);
+                }
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
                 info.TrackingStatusText.text = "None";
                 info.PositionTexts[0].text = "0.00";
