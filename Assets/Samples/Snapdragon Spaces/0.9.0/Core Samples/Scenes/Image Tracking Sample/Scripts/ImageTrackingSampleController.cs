@@ -65,9 +65,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
 
                 var step = panelSpeed * Time.deltaTime; //calculate distance to move
-                if (trackedImage.referenceImage.name == "Pizza")
+                if (trackedImage.referenceImage.name == "HappyFace")
                 {
-                    //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                    profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
                 }
                 anchorPoint.position = position;
 
