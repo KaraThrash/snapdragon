@@ -19,10 +19,12 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     public class ImageTrackingSampleController : SampleController
     {
         public float timer;
+        public Transform anchorPoint;
 
         private float panelSpeed = 1.0f;
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
+
 
         [Serializable]
         public struct TrackableInfo
@@ -59,15 +61,15 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             foreach (var trackedImage in args.updated)
             {
-                Vector3 position = trackedImage.transform.position;
+                var position = trackedImage.transform.position + Vector3.up * 2;
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
 
                 var step = panelSpeed * Time.deltaTime; //calculate distance to move
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
-                    profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                    //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
                 }
-                //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                anchorPoint.position = position;
 
                 info.TrackingStatusText.text = trackedImage.trackingState.ToString();
                 info.PositionTexts[0].text = position.x.ToString("#0.00");
@@ -85,6 +87,11 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 info.PositionTexts[2].text = "0.00";
                 _trackedImages.Remove(trackedImage.trackableId);
             }
+
+        }
+        public Transform getPositionData()
+        {
+            return anchorPoint;
         }
         IEnumerator SecondsCountdown(float delay)
         {
@@ -92,9 +99,5 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             profiles[0].SetActive(false);
         }
 
-        public void fakeFunction()
-        {
-            Debug.Log("I am hungry");
-        }
     }
 }
