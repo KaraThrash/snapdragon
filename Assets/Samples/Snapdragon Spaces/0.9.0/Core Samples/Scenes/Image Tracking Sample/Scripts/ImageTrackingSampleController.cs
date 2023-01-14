@@ -79,7 +79,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             foreach (var trackedImage in args.removed)
             {
-                StartCoroutine(SecondsCountdown(1f));
+                StartCoroutine(SecondsCountdown(3f));
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
                 info.TrackingStatusText.text = "None";
                 info.PositionTexts[0].text = "0.00";
