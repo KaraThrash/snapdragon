@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -24,7 +25,8 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public ARTrackedImageManager arImageManager;
 
         [Serializable]
-        public struct TrackableInfo {
+        public struct TrackableInfo
+        {
             public Text TrackingStatusText;
             public Text[] PositionTexts;
         }
@@ -32,26 +34,31 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private Dictionary<TrackableId, TrackableInfo> _trackedImages = new Dictionary<TrackableId, TrackableInfo>();
 
-        public override void OnEnable() {
+        public override void OnEnable()
+        {
             base.OnEnable();
             arImageManager.trackedImagesChanged += OnTrackedImagesChanged;
         }
 
-        public override void OnDisable() {
+        public override void OnDisable()
+        {
             base.OnDisable();
             arImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
         }
 
-        private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args) {
-            foreach (var trackedImage in args.added) {
+        private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args)
+        {
+            foreach (var trackedImage in args.added)
+            {
                 _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
                     profiles[0].SetActive(true);
-                }    
+                }
             }
 
-            foreach (var trackedImage in args.updated) {
+            foreach (var trackedImage in args.updated)
+            {
                 Vector3 position = trackedImage.transform.position;
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
 
@@ -68,13 +75,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 info.PositionTexts[2].text = position.z.ToString("#0.00");
             }
 
-            foreach (var trackedImage in args.removed) {
-                timer += Time.deltaTime;
-                if (timer > 1.0f)
-                {
-                    timer = 0f;
-                    profiles[0].SetActive(false);
-                }
+            foreach (var trackedImage in args.removed)
+            {
+                StartCoroutine(SecondsCountdown(1f));
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
                 info.TrackingStatusText.text = "None";
                 info.PositionTexts[0].text = "0.00";
@@ -82,6 +85,11 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 info.PositionTexts[2].text = "0.00";
                 _trackedImages.Remove(trackedImage.trackableId);
             }
+        }
+        IEnumerator SecondsCountdown(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            profiles[0].SetActive(false);
         }
     }
 }
