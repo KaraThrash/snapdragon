@@ -41,7 +41,7 @@ public class ImageTrackingControl : MonoBehaviour
             if (trackedImage.referenceImage.name == "Pizza")
             {
                 _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
-                if (clone == null)
+  //              if (clone == null)
                 {
                     clone = Instantiate(profilePrefabs[0]);
                     clone.transform.position = Vector3.zero;
