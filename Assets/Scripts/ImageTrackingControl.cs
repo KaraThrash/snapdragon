@@ -10,9 +10,8 @@ public class ImageTrackingControl : MonoBehaviour
 {
     public ARTrackedImageManager arImageManager;
 
-    public List<GameObject> profilePrefabs;
     private float textSpeed = 1.0f;
-    private GameObject clone = null;
+    public GameObject CLONE;
 
     [Serializable]
     public struct TrackableInfo
@@ -38,28 +37,20 @@ public class ImageTrackingControl : MonoBehaviour
     {
         foreach (var trackedImage in args.added)
         {
-            if (trackedImage.referenceImage.name == "Pizza")
-            {
-                _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
-  //              if (clone == null)
-                {
-                    clone = Instantiate(profilePrefabs[0]);
-                    clone.transform.position = Vector3.zero;
-                }
-            }
+            _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
+            //CLONE.SetActive(false);
         }
 
         foreach (var trackedImage in args.updated)
         {
             Vector3 position = trackedImage.transform.position;
             TrackableInfo info = _trackedImages[trackedImage.trackableId];
-
-            if (clone != null)
-            {
-                //var step = textSpeed * Time.deltaTime; //calculate distance to move
-                //clone.transform.position = Vector3.MoveTowards(clone.transform.position, position, step);
-                clone.transform.position = position;
-            }
+            CLONE.SetActive(false);
+            //if (clone.activeSelf)
+            //{
+            //    var step = textSpeed * Time.deltaTime; //calculate distance to move
+            //   clone.transform.position = Vector3.MoveTowards(clone.transform.position, position, step);
+            //}
 
             info.TrackingStatusText.text = trackedImage.trackingState.ToString();
             info.PositionTexts[0].text = position.x.ToString("#0.00");
@@ -69,7 +60,7 @@ public class ImageTrackingControl : MonoBehaviour
 
         foreach (var trackedImage in args.removed)
         {
-            
+            //clone.SetActive(false);
             TrackableInfo info = _trackedImages[trackedImage.trackableId];
             info.TrackingStatusText.text = "None";
             info.PositionTexts[0].text = "0.00";
@@ -87,6 +78,6 @@ public class ImageTrackingControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
