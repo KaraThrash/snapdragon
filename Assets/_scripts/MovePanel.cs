@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MovePanel : MonoBehaviour
 {
     public GameObject panelInstance;
+    public GameObject imageTracker;
 
     public Vector3 anchorOffset;
     public Transform anchor;
@@ -26,15 +27,15 @@ public class MovePanel : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed)
         {
             Debug.Log("Pressed");
-            panelInstance.transform.parent = null;
-
-            Vector3 hoverPosition = anchor.position + anchorOffset;
+            //myObject.GetComponent<MyScript>().MyFunction();
+            //Vector3 hoverPosition = imageTracker.GetComponent<ImageTrackingSampleController>();    //new Vector3 (0,0,2);
+            Vector3 hoverPosition = new Vector3(0, 0, 2);
             float dist = Vector3.Distance(hoverPosition, transform.position);
 
-            transform.position = Vector3.MoveTowards(transform.position, hoverPosition, Time.deltaTime * speed * dist);
+            panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, hoverPosition, Time.deltaTime * speed * dist);
 
-            Quaternion newRot = Quaternion.LookRotation(transform.position - observer.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime * rotSpeed * (1 + (dist * 0.1f)));
+            Quaternion newRot = Quaternion.LookRotation(panelInstance.transform.position - observer.position);
+            panelInstance.transform.rotation = Quaternion.Slerp(panelInstance.transform.rotation, newRot, Time.deltaTime * rotSpeed * (1 + (dist * 0.1f)));
 
         }
     }
