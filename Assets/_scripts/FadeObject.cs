@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FadeObject : MonoBehaviour
 {
-    private bool fadeOut, fadeIn;
-    public float fadeSpeed = 5.0f;
+    public bool fadeOut;
+    public float fadeSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,17 +26,15 @@ public class FadeObject : MonoBehaviour
             if (objectColor.a <= 0)
             {
                 fadeOut = false;
+                Destroy(gameObject);
             }
         }
+
+
     }
 
     public void FadeOutObject()
     {
         fadeOut = true;
-    }
-
-    public void FadeInObject()
-    {
-        fadeIn = true;
     }
 }
