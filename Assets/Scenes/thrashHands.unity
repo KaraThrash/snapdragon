@@ -2760,7 +2760,7 @@ MonoBehaviour:
   textSpeed: 1
   profiles:
   - {fileID: 3680122311939049561, guid: 824f8356ebf62e840bc65ea2a543c4ac, type: 3}
-  - {fileID: 1476460798}
+  - {fileID: 8642695503023489029, guid: 24e433295ea78fc4882f6bc8cf865535, type: 3}
   arImageManager: {fileID: 1865533054}
   testParenting: 0
   deletePrefab: 0

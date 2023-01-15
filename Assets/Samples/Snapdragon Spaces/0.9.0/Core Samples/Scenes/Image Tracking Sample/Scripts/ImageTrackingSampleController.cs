@@ -113,7 +113,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                     //StartCoroutine(runSocialTimer0());
                     spawnProfile(0);
                 }
-                else if (trackedImage.referenceImage.name == "Cover1")
+                else if (trackedImage.referenceImage.name == "chicken")
                 {
                     //StartCoroutine(runSocialTimer0());
                     spawnProfile(1);
