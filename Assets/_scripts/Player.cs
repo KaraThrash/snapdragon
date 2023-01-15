@@ -12,11 +12,17 @@ using InputDevice = UnityEngine.XR.InputDevice;
 using Qualcomm.Snapdragon.Spaces.Samples;
 using Qualcomm.Snapdragon.Spaces;
 
+
+
+
 public class Player : SampleController
 {
   private bool alternate;
   public float swipeDistance = 0.5f;
   public float positionScale = 0.1f;
+  public float minDistanceForNewPerson = 0.1f;
+
+public Person pizzaPersonData;
 
 public ImageTrackingSampleController imgController;
   public GameObject prefab_hoverPanel;
@@ -24,14 +30,27 @@ public ImageTrackingSampleController imgController;
   public List<TextHoverPanel> activePanels;
 
   public Transform parent_panels;
+  public Transform parent_persons;
+  public Transform camera;
+
+
+
+  public List<GameObject> prefab_persons;
+
   public Transform targetPerson;
 
   public Text debugText;
+
+
+
 
   public UnityEvent swipeRight;
   public UnityEvent swipeLeft;
   public UnityEvent swipeUp;
   public UnityEvent swipeDown;
+
+
+
 
   public Text LeftHandGestureName;
   public Text LeftHandGestureRatio;
@@ -76,15 +95,15 @@ private bool trackImageAnchor = false;
       base.Update();
 
 
-      if(imgController)
-      {
-        if(trackImageAnchor && activePanels.Count > 0)
-        {
-          activePanels[activePanels.Count - 1].anchorOffset =  imgController.getAnchor();
-
-        }
-
-      }
+      // if(imgController)
+      // {
+      //   if(trackImageAnchor && activePanels.Count > 0)
+      //   {
+      //     activePanels[activePanels.Count - 1].anchorOffset =  imgController.getAnchor();
+      //
+      //   }
+      //
+      // }
 
       if(Keyboard.current.aKey.wasPressedThisFrame )
       {Swipe_Left();  }
@@ -94,8 +113,90 @@ private bool trackImageAnchor = false;
       {Swipe_Up();  }
       if(Keyboard.current.fKey.wasPressedThisFrame )
       {Swipe_Down();  }
+      if(Keyboard.current.gKey.wasPressedThisFrame )
+      {ScanNewImage("PizzA",transform.position);  }
 
   }
+
+
+public void ScanNewImage(string _name,Vector3 _pos)
+{
+  if(FindClosestPerson(_pos) == null || Vector3.Distance(_pos,FindClosestPerson(_pos).transform.position) > minDistanceForNewPerson)
+  {
+        if(parent_persons == null){parent_panels = new GameObject().transform;}
+        if(parent_persons.childCount < prefab_persons.Count - 1)
+        {
+          GameObject clone = Instantiate(prefab_persons[parent_persons.childCount],_pos,transform.rotation);
+          clone.transform.parent = parent_persons;
+
+          int count = 0;
+          while(count < 2)
+          {
+            TextHoverPanel newPanel = GetPanel();
+            newPanel.gameObject.SetActive(true);
+            newPanel.hover = true;
+            newPanel.observer = camera;
+            newPanel.anchor = clone.transform;
+
+            newPanel.anchorOffset  = new Vector3(0,0,0);
+            newPanel.NextStyle(activePanels.Count);
+            newPanel.SetRowInformation(0,_name);
+            newPanel.anchorOffset  += new Vector3(count * positionScale,0 ,0);
+
+            if(count == 0)
+            {
+                clone.GetComponent<Person>().primary = newPanel;
+
+                }else             if(count == 1)
+                            {
+                clone.GetComponent<Person>().secondary = newPanel;
+
+                            }else{clone.GetComponent<Person>().other = newPanel;}
+
+            count++;
+              alternate = !alternate;
+          }
+
+
+
+        }
+
+
+  }
+
+}
+
+public Person FindClosestPerson(Vector3 _pos)
+{
+  Person closest = null;
+  float dist = 9999;
+
+  if(parent_persons.childCount > 0 )
+  {
+      foreach(Transform el in parent_panels)
+      {
+        if(closest == null)
+        {
+            closest = el.GetComponent<Person>();
+            dist = Vector3.Distance(_pos,el.position);
+
+        }else
+        {
+            if(Vector3.Distance(_pos,el.position) < dist)
+            {
+              dist = Vector3.Distance(_pos,el.position);
+              closest = el.GetComponent<Person>();
+            }
+
+        }
+
+      }
+
+  }
+
+
+    return closest;
+}
 
 
 public TextHoverPanel GetPanel()
@@ -212,6 +313,8 @@ public void DetectSwipe(SpacesHand _hand,Vector3 _startPos)
      Swipe_Down();
     }else
     {
+
+      PullPanel( _hand);
       Swipe_Up();
 
     }
@@ -222,7 +325,9 @@ public void DetectSwipe(SpacesHand _hand,Vector3 _startPos)
 
     if(hort <= 0)
     {
-     Swipe_Left();
+      Swipe_Left();
+
+
     }else
     {
       Swipe_Right();
@@ -233,18 +338,118 @@ public void DetectSwipe(SpacesHand _hand,Vector3 _startPos)
 
 }
 
+
+public void PullPanel(SpacesHand _hand)
+{
+  TextHoverPanel closest = FindClosestPanel(_hand.transform.position);
+  TextHoverPanel furthest =FindFurthestPanel( _hand.transform.position);
+
+  if(_hand.IsLeft)
+  {
+    closest.anchorOffset = _hand.transform.position - transform.position;
+
+  }
+  else
+  {
+    closest.anchorOffset = transform.forward;
+    closest.anchor = furthest.transform;
+
+  }
+
+}
+
+
+
+public TextHoverPanel FindClosestPanel(Vector3 _pos)
+{
+  TextHoverPanel closest = null;
+  float dist = 9999;
+
+  if(parent_panels.childCount > 0 )
+  {
+      foreach(Transform el in parent_panels)
+      {
+        if(closest == null)
+        {
+            closest = el.GetComponent<TextHoverPanel>();
+            dist = Vector3.Distance(_pos,el.position);
+
+        }else
+        {
+            if(Vector3.Distance(_pos,el.position) < dist)
+            {
+              dist = Vector3.Distance(_pos,el.position);
+              closest = el.GetComponent<TextHoverPanel>();
+            }
+
+        }
+
+      }
+
+  }
+
+
+    return closest;
+}
+
+public TextHoverPanel FindFurthestPanel(Vector3 _pos)
+{
+  TextHoverPanel furthest = null;
+  float dist = 0;
+
+  if(parent_panels.childCount > 0 )
+  {
+      foreach(Transform el in parent_panels)
+      {
+        if(furthest == null)
+        {
+            furthest = el.GetComponent<TextHoverPanel>();
+            dist = Vector3.Distance(_pos,el.position);
+
+        }else
+        {
+            if(Vector3.Distance(_pos,el.position) > dist)
+            {
+              dist = Vector3.Distance(_pos,el.position);
+              furthest = el.GetComponent<TextHoverPanel>();
+            }
+
+        }
+
+      }
+
+  }
+
+
+    return furthest;
+}
+
+
+
+
 public void Swipe_Up()
 {
   swipeUp.Invoke();
   UpdateDebugText("swipe up" + '\n');
-  if(activePanels != null && activePanels.Count > 1)
-  {
-    TextHoverPanel panel = activePanels[activePanels.Count - 1];
-    activePanels.RemoveAt(activePanels.Count - 1);
-    activePanels.Insert(0,panel);
-    panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y),panel.anchorOffset.z);
 
-  }
+
+
+    Person closestPerson = FindClosestPerson(transform.position);
+    if(closestPerson != null)
+    {
+      closestPerson.ShowPanels(true);
+
+    }
+
+  //
+  // if(activePanels != null && activePanels.Count > 1)
+  // {
+  //   TextHoverPanel panel = activePanels[activePanels.Count - 1];
+  //   activePanels.RemoveAt(activePanels.Count - 1);
+  //   activePanels.Insert(0,panel);
+  //   panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y),panel.anchorOffset.z);
+  //
+  // }
 
 
 }
@@ -252,15 +457,23 @@ public void Swipe_Down()
 {
   swipeDown.Invoke();
   UpdateDebugText("swipe down" + '\n');
-  if(activePanels != null && activePanels.Count > 1)
+
+  Person closestPerson = FindClosestPerson(transform.position);
+  if(closestPerson != null)
   {
-    TextHoverPanel panel = activePanels[0];
-    activePanels.RemoveAt(0);
-    panel.anchorOffset = Vector3.zero;
-    panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y) * -1,panel.anchorOffset.z);
-    activePanels.Add(panel);
+    closestPerson.ShowPanels(false);
 
   }
+
+  // if(activePanels != null && activePanels.Count > 1)
+  // {
+  //   TextHoverPanel panel = activePanels[0];
+  //   activePanels.RemoveAt(0);
+  //   panel.anchorOffset = Vector3.zero;
+  //   panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y) * -1,panel.anchorOffset.z);
+  //   activePanels.Add(panel);
+  //
+  // }
 }
 
 public void Swipe_Left()
@@ -288,7 +501,7 @@ public void Swipe_Right()
   TextHoverPanel newPanel = GetPanel();
   newPanel.gameObject.SetActive(true);
   newPanel.hover = true;
-  newPanel.observer = this.transform;
+  newPanel.observer = camera;
   //newPanel.anchor = targetPerson;
 
   newPanel.anchorOffset  = new Vector3(0,0,0);
