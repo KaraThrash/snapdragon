@@ -19,7 +19,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     public class ImageTrackingSampleController : SampleController
     {
         public float timer;
-        public GameObject frontPanel;
+        //public GameObject profiles[0];
         public GameObject testObject;
         public Vector3 anchorPoint;
 
@@ -27,6 +27,13 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public ARTrackedImageManager arImageManager;
 
         public bool testParenting;
+        public bool testMovement;
+
+
+        // Intializing variables for movement
+        //public Transform observer;
+        public float rotSpeed;
+        public float speed;
 
         void FixedUpdate()
         {
@@ -35,12 +42,18 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 testParentingFunction();
                 testParenting = false;
             }
+
+            if (testMovement)
+            {
+                movePaneltoImage();
+                testMovement = false;
+            }
         }
 
         public void testParentingFunction()
         {
             //var testObjectInstance = Instantiate(testObject);
-            var panelInstance = Instantiate(frontPanel);
+            var panelInstance = Instantiate(profiles[0]);
 
             //Find ar session component
             var cam = GameObject.Find("AR Session Origin");
@@ -125,6 +138,17 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             
             //profiles[0].transform.position = anchorPoint;
             return anchorPoint;
+        }
+
+        public void movePaneltoImage()
+        {
+            Vector3 hoverPosition = anchorPoint + new Vector3(0,1,0) * 2;
+            float dist = Vector3.Distance(hoverPosition, transform.position);
+
+            profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, hoverPosition, Time.deltaTime * speed * dist);
+
+            //Quaternion newRot = Quaternion.LookRotation(profiles[0].transform.position - observer.position);
+            //profiles[0].transform.rotation = Quaternion.Slerp(profiles[0].transform.rotation, newRot, Time.deltaTime * rotSpeed * (1 + (dist * 0.1f)));
         }
         IEnumerator SecondsCountdown(float delay)
         {
