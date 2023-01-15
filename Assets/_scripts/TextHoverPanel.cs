@@ -9,15 +9,22 @@ public class TextHoverPanel : MonoBehaviour
   public bool hover;
   public float speed;
   public float rotSpeed;
+
   public List<Text> textRows;
   public Transform observer;
   public Transform anchor;
+
+  public List<Sprite> header_backgroundImages;
+  public List<Color> backgroundColors;
+  public List<Sprite> arrowImages;
 
 
   public Sprite red_titleBackgroundImage;
   public Sprite blue_titleBackgroundImage;
 
 
+  public Image upArrowImage;
+  public Image downArrowImage;
   public Image headerBackground;
   public Image backgroundPanel;
 
@@ -86,15 +93,29 @@ public class TextHoverPanel : MonoBehaviour
     public void SetColor(int _format)
     {
 
-      Color clr = redHeader;
-      Sprite headerImg = red_titleBackgroundImage;
+      Color clr = Color.red;
+      Sprite headerImg= null;
+      Sprite upArrow= null ;
+      Sprite downArrow = null;
       //red format
-      if(_format == 0)
+      if(header_backgroundImages != null & header_backgroundImages.Count > _format)
       {
-            clr = redHeader;
-             headerImg = red_titleBackgroundImage;
+            headerImg = header_backgroundImages[_format];
 
       }
+      if(backgroundColors != null & backgroundColors.Count > _format)
+      {
+            clr = backgroundColors[_format];
+
+      }
+      if(arrowImages != null & arrowImages.Count > _format * 2)
+      {
+            upArrow = arrowImages[_format];
+            downArrow = arrowImages[_format + 1];
+
+      }
+
+
       else if(_format == 1)
       {
           clr = blueHeader;
@@ -104,15 +125,43 @@ public class TextHoverPanel : MonoBehaviour
 
         if(backgroundPanel)
         {
-          backgroundPanel.color = (clr);
+          backgroundPanel.color = clr;
         }
         if(headerBackground)
         {
           headerBackground.sprite = headerImg;
         }
+        if(upArrowImage)
+        {
+          upArrowImage.sprite = upArrow;
+        }
+        if(downArrowImage)
+        {
+          downArrowImage.sprite = downArrow;
+        }
 
     }
 
+private int currentStyle;
+
+public void NextStyle()
+{
+  currentStyle++;
+  if(currentStyle >= backgroundColors.Count)
+  {currentStyle = 0;}
+  SetColor(currentStyle);
+
+}
+
+public void NextStyle(int _format)
+{
+  if(backgroundColors == null || backgroundColors.Count == 0){return;}
+  currentStyle = _format % backgroundColors.Count;
+  if(currentStyle >= backgroundColors.Count)
+  {currentStyle = 0;}
+  SetColor(currentStyle);
+
+}
 
     public void SetRowInformation(int _row,string _text)
     {
