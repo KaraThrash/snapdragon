@@ -19,7 +19,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     public class ImageTrackingSampleController : SampleController
     {
         public float timer;
-
+        public Vector3 anchorPoint;
         private float panelSpeed = 1.0f;
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
@@ -65,10 +65,10 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 var step = panelSpeed * Time.deltaTime; //calculate distance to move
                 if (trackedImage.referenceImage.name == "HappyFace")
                 {
-                    profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                    //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
                 }
                 //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
-
+                anchorPoint = position;
                 info.TrackingStatusText.text = trackedImage.trackingState.ToString();
                 info.PositionTexts[0].text = position.x.ToString("#0.00");
                 info.PositionTexts[1].text = position.y.ToString("#0.00");
@@ -86,15 +86,17 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 _trackedImages.Remove(trackedImage.trackableId);
             }
         }
+        public Vector3 getAnchor()
+        {
+            
+            //profiles[0].transform.position = anchorPoint;
+            return anchorPoint;
+        }
         IEnumerator SecondsCountdown(float delay)
         {
             yield return new WaitForSeconds(delay);
             profiles[0].SetActive(false);
         }
 
-        public void fakeFunction()
-        {
-            Debug.Log("I am hungry");
-        }
     }
 }
