@@ -95,6 +95,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
                     StartCoroutine(runSocialTimer0());
+                    testParentingFunction();
                 }
             }
 
