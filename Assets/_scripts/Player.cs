@@ -17,6 +17,7 @@ public class Player : SampleController
   private bool alternate;
   public float swipeDistance = 0.5f;
   public float positionScale = 0.1f;
+
 public ImageTrackingSampleController imgController;
   public GameObject prefab_hoverPanel;
   public TextHoverPanel hoverPanel;
@@ -102,7 +103,7 @@ public TextHoverPanel GetPanel()
   TextHoverPanel newHover = null;
   if(parent_panels == null){parent_panels = new GameObject().transform;}
 
-  if(parent_panels.childCount == 0 || parent_panels.GetChild(0).gameObject.activeSelf)
+  if(parent_panels.childCount == 0 || parent_panels.GetChild(0).gameObject.activeSelf || parent_panels.GetChild(0).GetComponent<TextHoverPanel>() == null )
   {
       newHover = Instantiate(prefab_hoverPanel).GetComponent<TextHoverPanel>();
 
@@ -111,7 +112,8 @@ public TextHoverPanel GetPanel()
     newHover.transform.parent = null;
     newHover.transform.parent = parent_panels;
     activePanels.Add(newHover);
-    newHover.anchor = targetPerson;
+
+    // newHover.anchor = targetPerson;
     newHover.gameObject.SetActive(true);
   return newHover;
 }
@@ -287,7 +289,7 @@ public void Swipe_Right()
   newPanel.gameObject.SetActive(true);
   newPanel.hover = true;
   newPanel.observer = this.transform;
-  newPanel.anchor = targetPerson;
+  //newPanel.anchor = targetPerson;
 
   newPanel.anchorOffset  = new Vector3(0,0,0);
 newPanel.NextStyle(activePanels.Count);
@@ -310,26 +312,13 @@ newPanel.NextStyle(activePanels.Count);
 
 public void ShowPanel()
 {
-  UpdateDebugText("SHOW panel" + '\n');
-  if(hoverPanel)
-  {
-    hoverPanel.gameObject.SetActive(true);
 
-    hoverPanel.hover = true;
-  }
 
 }
 
 public void HidePanel()
 {
 
-  UpdateDebugText("Hide Panel" + '\n');
-  if(hoverPanel)
-  {
-      hoverPanel.hover = false;
-      hoverPanel.gameObject.SetActive(false);
-
-  }
 
 }
 

@@ -88,7 +88,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         }
         public Vector3 getAnchor()
         {
-            
+
             //profiles[0].transform.position = anchorPoint;
             return anchorPoint;
         }
