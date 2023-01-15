@@ -72,7 +72,18 @@ public class TextHoverPanel : MonoBehaviour
 
 
       Vector3 hoverPosition = observer.position + anchorOffset;
-      if(anchor != null ){hoverPosition = anchor.position + anchorOffset;}
+      if(anchor != null )
+      {
+        hoverPosition = anchor.position + anchorOffset;
+      }
+      else
+      {
+        if(anchorOffset== Vector3.zero)
+        {
+          hoverPosition = observer.position + observer.forward + observer.right;
+        }
+
+      }
 
 
       float dist = Vector3.Distance(hoverPosition,transform.position);
