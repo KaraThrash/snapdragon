@@ -45,3 +45,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: HappyFace
     m_Texture: {fileID: 2800000, guid: 35279ade8d96bb34fb7e11b2a1ead2fc, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4878024581276072738
+      m_GuidHigh: 6847058030358273925
+    m_SerializedTextureGuid:
+      m_GuidLow: 0
+      m_GuidHigh: 0
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 
+    m_Texture: {fileID: 0}

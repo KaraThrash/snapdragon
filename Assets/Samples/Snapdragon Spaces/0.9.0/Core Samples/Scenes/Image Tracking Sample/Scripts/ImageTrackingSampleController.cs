@@ -19,6 +19,8 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     public class ImageTrackingSampleController : SampleController
     {
         public float timer;
+        public GameObject frontPanel;
+        public GameObject testObject;
         public Vector3 anchorPoint;
         private float panelSpeed = 1.0f;
         public List<GameObject> profiles;
@@ -53,7 +55,13 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
-                    profiles[0].SetActive(true);
+                    profiles[0].SetActive(false);
+                    var testObjectInstance = Instantiate(testObject);
+                    var panelInstance = Instantiate(frontPanel);
+
+                    var cam = Camera.main.transform;
+                    panelInstance.transform.position = cam.position + cam.forward;
+                    testObjectInstance.transform.position = cam.position + cam.forward;
                 }
             }
 
@@ -69,6 +77,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 }
                 //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
                 anchorPoint = position;
+                profiles[0].SetActive(true);
                 info.TrackingStatusText.text = trackedImage.trackingState.ToString();
                 info.PositionTexts[0].text = position.x.ToString("#0.00");
                 info.PositionTexts[1].text = position.y.ToString("#0.00");
