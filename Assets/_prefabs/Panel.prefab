@@ -966,8 +966,8 @@ MonoBehaviour:
   speed: 1
   rotSpeed: 0.5
   textRows:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4885402210991200326}
+  - {fileID: 3426665721438425696}
   observer: {fileID: 0}
   anchor: {fileID: 0}
   header_backgroundImages:

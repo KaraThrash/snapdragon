@@ -18,6 +18,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 {
     public class ImageTrackingSampleController : SampleController
     {
+      public Player player;
         public List<float> timer = new List <float>(3);
 
         public GameObject testObject;
@@ -138,6 +139,14 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
                 var step = textSpeed * Time.deltaTime; //calculate distance to move
                 var offset = position + new Vector3(0, 1, 1);
+
+                if(player != null)
+                {
+
+                  player.ScanNewImage(trackedImage.referenceImage.name,position);
+
+                }
+
                 if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
                 {
                     panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
