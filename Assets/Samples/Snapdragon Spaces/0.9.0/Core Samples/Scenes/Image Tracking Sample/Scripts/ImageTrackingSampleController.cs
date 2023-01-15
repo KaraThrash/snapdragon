@@ -22,11 +22,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public GameObject frontPanel;
         public GameObject testObject;
         public Vector3 anchorPoint;
-        private float panelSpeed = 1.0f;
+
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
-
-        public Vector3 testRange;
 
         public bool testParenting;
 
@@ -47,7 +45,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             //Find ar session component
             var cam = GameObject.Find("AR Session Origin");
             panelInstance.transform.parent = cam.transform;
-            panelInstance.transform.localPosition = testRange;
+            panelInstance.transform.localPosition = new Vector3(0,0,1) * 1.3f;
         }
 
         [Serializable]
@@ -98,7 +96,6 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 //panelInstance.transform.position = cam.position + cam.forward;
                 //testObjectInstance.transform.position = cam.position + cam.forward;
 
-                var step = panelSpeed * Time.deltaTime; //calculate distance to move
                 if (trackedImage.referenceImage.name == "HappyFace")
                 {
                     //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
