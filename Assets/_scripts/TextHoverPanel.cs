@@ -155,6 +155,7 @@ public void NextStyle()
 
 public void NextStyle(int _format)
 {
+  if(backgroundColors == null || backgroundColors.Count == 0){return;}
   currentStyle = _format % backgroundColors.Count;
   if(currentStyle >= backgroundColors.Count)
   {currentStyle = 0;}

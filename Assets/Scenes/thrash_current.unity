@@ -2704,7 +2704,6 @@ MonoBehaviour:
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
   timer: 0
-  anchorPoint: {x: 0, y: 0, z: 0}
   profiles:
   - {fileID: 1476460798}
   arImageManager: {fileID: 1865533054}
@@ -3109,6 +3108,7 @@ MonoBehaviour:
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
   swipeDistance: 0.1
+  positionScale: 0.1
   prefab_hoverPanel: {fileID: 5342421687686836589, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
   hoverPanel: {fileID: 112063561}
   activePanels:
@@ -3122,7 +3122,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1647116436}
         m_TargetAssemblyTypeName: Qualcomm.Snapdragon.Spaces.Samples.ImageTrackingSampleController,
           Assembly-CSharp
-        m_MethodName: getAnchor
+        m_MethodName: fakeFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

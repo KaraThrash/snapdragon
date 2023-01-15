@@ -284,7 +284,6 @@ newPanel.NextStyle(activePanels.Count);
   {
       newPanel.SetRowInformation(0,"not " + activePanels.Count.ToString());
       newPanel.anchorOffset  += new Vector3(0,(activePanels.Count + 1) *  positionScale ,-(activePanels.Count + 1)* positionScale);
-      newPanel.SetColor(0);
 
   }
   alternate = !alternate;
