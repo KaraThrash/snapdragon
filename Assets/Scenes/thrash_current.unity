@@ -2703,10 +2703,17 @@ MonoBehaviour:
   GazePointer: {fileID: 1715833752}
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
-  timer: 0
+  timer: []
+  testObject: {fileID: 0}
+  anchorPoint: {x: 0, y: 0, z: 0}
+  textSpeed: 1
   profiles:
   - {fileID: 1476460798}
   arImageManager: {fileID: 1865533054}
+  testParenting: 0
+  deletePrefab: 0
+  startTimer: 0
+  stopTimer: 0
   trackableInfos:
   - TrackingStatusText: {fileID: 0}
     PositionTexts:
@@ -3109,7 +3116,8 @@ MonoBehaviour:
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
   swipeDistance: 0.1
   positionScale: 0.1
-  prefab_hoverPanel: {fileID: 5342421687686836589, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
+  imgController: {fileID: 0}
+  prefab_hoverPanel: {fileID: 3680122311939049561, guid: 824f8356ebf62e840bc65ea2a543c4ac, type: 3}
   hoverPanel: {fileID: 112063561}
   activePanels:
   - {fileID: 112063561}
