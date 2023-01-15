@@ -80,7 +80,7 @@ public class TextHoverPanel : MonoBehaviour
       {
         if(anchorOffset== Vector3.zero)
         {
-          hoverPosition = observer.position + observer.forward + observer.right;
+          hoverPosition = observer.position + observer.forward + observer.forward + observer.right;
         }
 
       }

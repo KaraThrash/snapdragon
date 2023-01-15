@@ -114,7 +114,7 @@ private bool trackImageAnchor = false;
       if(Keyboard.current.fKey.wasPressedThisFrame )
       {Swipe_Down();  }
       if(Keyboard.current.gKey.wasPressedThisFrame )
-      {ScanNewImage("PizzA",transform.position);  }
+      {ScanNewImage("PizzA",camera.position);  }
 
   }
 
@@ -124,7 +124,7 @@ public void ScanNewImage(string _name,Vector3 _pos)
   if(FindClosestPerson(_pos) == null || Vector3.Distance(_pos,FindClosestPerson(_pos).transform.position) > minDistanceForNewPerson)
   {
         if(parent_persons == null){parent_panels = new GameObject().transform;}
-        if(parent_persons.childCount < prefab_persons.Count - 1)
+        if(parent_persons.childCount < prefab_persons.Count )
         {
           GameObject clone = Instantiate(prefab_persons[parent_persons.childCount],_pos,transform.rotation);
           clone.transform.parent = parent_persons;
@@ -141,7 +141,7 @@ public void ScanNewImage(string _name,Vector3 _pos)
             newPanel.anchorOffset  = new Vector3(0,0,0);
             newPanel.NextStyle(activePanels.Count);
            // newPanel.SetRowInformation(0,_name);
-            newPanel.anchorOffset  += new Vector3(count * positionScale,0 ,0);
+            newPanel.anchorOffset  = new Vector3(count * positionScale,0 ,0);
                     clone.GetComponent<Person>().SetPanel(newPanel);
 
             count++;
@@ -164,7 +164,7 @@ public Person FindClosestPerson(Vector3 _pos)
 
   if(parent_persons.childCount > 0 )
   {
-      foreach(Transform el in parent_panels)
+      foreach(Transform el in parent_persons)
       {
         if(closest == null)
         {
@@ -305,7 +305,7 @@ public void DetectSwipe(SpacesHand _hand,Vector3 _startPos)
     }else
     {
 
-      PullPanel( _hand);
+      //PullPanel( _hand);
       Swipe_Up();
 
     }
@@ -473,13 +473,13 @@ public void Swipe_Left()
   UpdateDebugText("swipe left" + '\n');
 
     trackImageAnchor = false;
-  if(activePanels != null && activePanels.Count > 0)
-  {
-    activePanels[activePanels.Count - 1].hover = false;
-    activePanels[activePanels.Count - 1].anchorOffset = Vector3.zero;
-    activePanels[activePanels.Count - 1].gameObject.SetActive(false);
-    activePanels.RemoveAt(activePanels.Count - 1);
-  }
+  //if(activePanels != null && activePanels.Count > 0)
+  //{
+  //  activePanels[activePanels.Count - 1].hover = false;
+  //  activePanels[activePanels.Count - 1].anchorOffset = Vector3.zero;
+  //  activePanels[activePanels.Count - 1].gameObject.SetActive(false);
+  //  activePanels.RemoveAt(activePanels.Count - 1);
+  //}
 
 }
 public void Swipe_Right()
@@ -488,26 +488,26 @@ public void Swipe_Right()
 
   UpdateDebugText("swipe right" + '\n');
 
-    trackImageAnchor = true;
-  TextHoverPanel newPanel = GetPanel();
-  newPanel.gameObject.SetActive(true);
-  newPanel.hover = true;
-  newPanel.observer = camera;
-  //newPanel.anchor = targetPerson;
+//    trackImageAnchor = true;
+//  TextHoverPanel newPanel = GetPanel();
+//  newPanel.gameObject.SetActive(true);
+//  newPanel.hover = true;
+//  newPanel.observer = camera;
+//  //newPanel.anchor = targetPerson;
 
-  newPanel.anchorOffset  = new Vector3(0,0,0);
-newPanel.NextStyle(activePanels.Count);
+//  newPanel.anchorOffset  = new Vector3(0,0,0);
+//newPanel.NextStyle(activePanels.Count);
 
   if(alternate)
   {
    // newPanel.SetRowInformation(0,activePanels.Count.ToString());
 
-    newPanel.anchorOffset  += new Vector3(0,-(activePanels.Count + 1)* positionScale ,-(activePanels.Count + 1)* positionScale);
+   // newPanel.anchorOffset  += new Vector3(0,-(activePanels.Count + 1)* positionScale ,-(activePanels.Count + 1)* positionScale);
   }
   else
   {
      // newPanel.SetRowInformation(0,"not " + activePanels.Count.ToString());
-      newPanel.anchorOffset  += new Vector3(0,(activePanels.Count + 1) *  positionScale ,-(activePanels.Count + 1)* positionScale);
+    //  newPanel.anchorOffset  += new Vector3(0,(activePanels.Count + 1) *  positionScale ,-(activePanels.Count + 1)* positionScale);
 
   }
   alternate = !alternate;
