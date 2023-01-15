@@ -123,6 +123,12 @@ public void ScanNewImage(string _name,Vector3 _pos)
 {
   if(FindClosestPerson(_pos) == null || Vector3.Distance(_pos,FindClosestPerson(_pos).transform.position) > minDistanceForNewPerson)
   {
+
+    if(Vector3.Distance(_pos,camera.position) > 5)
+    {
+      _pos = (_pos.normalized * 3)+ camera.position;
+
+    }
         if(parent_persons == null){parent_panels = new GameObject().transform;}
         if(parent_persons.childCount < prefab_persons.Count )
         {
@@ -139,7 +145,7 @@ public void ScanNewImage(string _name,Vector3 _pos)
             newPanel.anchor = clone.transform;
 
             newPanel.anchorOffset  = new Vector3(0,0,0);
-            newPanel.NextStyle(activePanels.Count);
+            newPanel.NextStyle(count);
            // newPanel.SetRowInformation(0,_name);
             newPanel.anchorOffset  = new Vector3(count * positionScale,0 ,0);
                     clone.GetComponent<Person>().SetPanel(newPanel);
@@ -425,7 +431,7 @@ public void Swipe_Up()
 
 
 
-    Person closestPerson = FindClosestPerson(transform.position);
+    Person closestPerson = FindClosestPerson(camera.position);
     if(closestPerson != null)
     {
       closestPerson.ShowPanels(true);
@@ -449,7 +455,7 @@ public void Swipe_Down()
   swipeDown.Invoke();
   UpdateDebugText("swipe down" + '\n');
 
-  Person closestPerson = FindClosestPerson(transform.position);
+  Person closestPerson = FindClosestPerson(camera.position);
   if(closestPerson != null)
   {
     closestPerson.ShowPanels(false);
