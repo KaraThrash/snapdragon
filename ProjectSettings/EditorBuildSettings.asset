@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/img_mergedwithhands.unity
     guid: 2ecba8737d00daa4bb31e3b2471aba25
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/thrashHands.unity
     guid: 88227c86a24386543b633c34ab7dcf49
+  - enabled: 1
+    path: Assets/Scenes/BUILD_ME.unity
+    guid: ac360bd62e6f7af4599a7e91e5cd321a
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 3eb8e67229f06024fabe3b14b9063421, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 95bb061a5e246df4e92b06911c2dbd64, type: 2}

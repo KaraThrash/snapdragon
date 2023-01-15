@@ -20,7 +20,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     {
         public List<float> timer = new List <float>(3);
 
-        public GameObject testObject;
+        //public GameObject testObject;
         public Vector3 anchorPoint;
         public float textSpeed = 1.0f;
 
@@ -64,15 +64,15 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             //Destroy(panelInstance);
             if (indx == 0)
             {
-                 panelInstance = Instantiate(profiles[0]);
+                 //panelInstance = Instantiate(profiles[0]);
             }
             else if (indx == 1)
             {
-                 panelInstance = Instantiate(profiles[1]);
+                 //panelInstance = Instantiate(profiles[1]);
             }
             else if (indx == 2)
             {
-                 panelInstance = Instantiate(profiles[2]);
+                 //panelInstance = Instantiate(profiles[2]);
             }
 
             //Find ar session component
@@ -111,17 +111,17 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
                     //StartCoroutine(runSocialTimer0());
-                    spawnProfile(0);
+                    //spawnProfile(0);
                 }
                 else if (trackedImage.referenceImage.name == "chicken")
                 {
                     //StartCoroutine(runSocialTimer0());
-                    spawnProfile(1);
+                    //spawnProfile(1);
                 }
                 else if (trackedImage.referenceImage.name == "Cover2")
                 {
                     //StartCoroutine(runSocialTimer0());
-                    spawnProfile(2);
+                    //spawnProfile(2);
                 }
             }
 
@@ -136,11 +136,11 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 Vector3 position = trackedImage.transform.position;
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
 
-                var step = textSpeed * Time.deltaTime; //calculate distance to move
-                var offset = position + new Vector3(0, 1, 1);
-                if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
+                //var step = textSpeed * Time.deltaTime; //calculate distance to move
+                //var offset = position + new Vector3(0, 1, 1);
+               // if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
                 {
-                    panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
+                    //panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
                 }
 
                 anchorPoint = position;
