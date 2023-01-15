@@ -26,6 +26,30 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
 
+        public Vector3 testRange;
+
+        public bool testParenting;
+
+        void FixedUpdate()
+        {
+            if (testParenting == true)
+            {
+                testParentingFunction();
+                testParenting = false;
+            }
+        }
+
+        public void testParentingFunction()
+        {
+            //var testObjectInstance = Instantiate(testObject);
+            var panelInstance = Instantiate(frontPanel);
+
+            //Find ar session component
+            var cam = GameObject.Find("AR Session Origin");
+            panelInstance.transform.parent = cam.transform;
+            panelInstance.transform.localPosition = testRange;
+        }
+
         [Serializable]
         public struct TrackableInfo
         {
@@ -56,12 +80,12 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
                     profiles[0].SetActive(false);
-                    var testObjectInstance = Instantiate(testObject);
-                    var panelInstance = Instantiate(frontPanel);
+                    //testParentingFunction();
 
-                    var cam = Camera.main.transform;
-                    panelInstance.transform.position = cam.position + cam.forward;
-                    testObjectInstance.transform.position = cam.position + cam.forward;
+
+
+                    //panelInstance.transform.position = cam.position + cam.forward;
+                    //testObjectInstance.transform.position = cam.position + cam.forward;
                 }
             }
 
@@ -69,6 +93,10 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             {
                 Vector3 position = trackedImage.transform.position;
                 TrackableInfo info = _trackedImages[trackedImage.trackableId];
+
+                //var cam = Camera.main.transform;
+                //panelInstance.transform.position = cam.position + cam.forward;
+                //testObjectInstance.transform.position = cam.position + cam.forward;
 
                 var step = panelSpeed * Time.deltaTime; //calculate distance to move
                 if (trackedImage.referenceImage.name == "HappyFace")

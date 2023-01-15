@@ -49,9 +49,9 @@ MonoBehaviour:
       m_GuidLow: 4878024581276072738
       m_GuidHigh: 6847058030358273925
     m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: 
-    m_Texture: {fileID: 0}
+      m_GuidLow: 14903634572835187206
+      m_GuidHigh: 15604969849731686970
+    m_Size: {x: 0.15, y: 0.097039476}
+    m_SpecifySize: 1
+    m_Name: city
+    m_Texture: {fileID: 2800000, guid: 60126a0658aeced43a22f04f66fd8fd8, type: 3}
