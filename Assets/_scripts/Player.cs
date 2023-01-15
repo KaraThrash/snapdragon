@@ -17,7 +17,7 @@ public class Player : SampleController
   private bool alternate;
   public float swipeDistance = 0.5f;
   public float positionScale = 0.1f;
-
+public ImageTrackingSampleController imgController;
   public GameObject prefab_hoverPanel;
   public TextHoverPanel hoverPanel;
   public List<TextHoverPanel> activePanels;
@@ -57,7 +57,7 @@ public class Player : SampleController
   public Vector3 lh_StartPos;
   public Vector3 rh_StartPos;
 
-
+private bool trackImageAnchor = false;
 
 
 
@@ -73,6 +73,17 @@ public class Player : SampleController
 
   public override void Update() {
       base.Update();
+
+
+      if(imgController)
+      {
+        if(trackImageAnchor && activePanels.Count > 0)
+        {
+          activePanels[activePanels.Count - 1].anchorOffset =  imgController.getAnchor();
+
+        }
+
+      }
 
       if(Keyboard.current.aKey.wasPressedThisFrame )
       {Swipe_Left();  }
@@ -232,6 +243,8 @@ public void Swipe_Up()
     panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y),panel.anchorOffset.z);
 
   }
+
+
 }
 public void Swipe_Down()
 {
@@ -241,7 +254,7 @@ public void Swipe_Down()
   {
     TextHoverPanel panel = activePanels[0];
     activePanels.RemoveAt(0);
-    panel.anchorOffset = activePanels[activePanels.Count - 1].anchorOffset;
+    panel.anchorOffset = Vector3.zero;
     panel.anchorOffset = new Vector3(panel.anchorOffset.x,Mathf.Abs(panel.anchorOffset.y) * -1,panel.anchorOffset.z);
     activePanels.Add(panel);
 
@@ -252,6 +265,8 @@ public void Swipe_Left()
 {
   swipeLeft.Invoke();
   UpdateDebugText("swipe left" + '\n');
+
+    trackImageAnchor = false;
   if(activePanels != null && activePanels.Count > 0)
   {
     activePanels[activePanels.Count - 1].hover = false;
@@ -264,7 +279,10 @@ public void Swipe_Left()
 public void Swipe_Right()
 {
   swipeRight.Invoke();
+
   UpdateDebugText("swipe right" + '\n');
+
+    trackImageAnchor = true;
   TextHoverPanel newPanel = GetPanel();
   newPanel.gameObject.SetActive(true);
   newPanel.hover = true;
