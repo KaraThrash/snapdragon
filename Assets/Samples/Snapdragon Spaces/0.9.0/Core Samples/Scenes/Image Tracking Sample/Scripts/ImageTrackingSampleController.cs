@@ -22,6 +22,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         public GameObject testObject;
         public Vector3 anchorPoint;
+        public float textSpeed = 1.0f;
 
         public List<GameObject> profiles;
         public ARTrackedImageManager arImageManager;
@@ -31,12 +32,14 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public bool startTimer;
         public bool stopTimer;
 
+        private GameObject panelInstance;
+
 
         void FixedUpdate()
         {
             if (testParenting == true)
             {
-                testParentingFunction();
+                spawnProfile(0);
                 testParenting = false;
             }
             if (deletePrefab)
@@ -54,15 +57,28 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
         }
 
-        public void testParentingFunction()
+        public void spawnProfile(int indx)
         {
             //var testObjectInstance = Instantiate(testObject);
-            var panelInstance = Instantiate(profiles[0]);
+            //var panelInstance = Instantiate(testObject);
+            //Destroy(panelInstance);
+            if (indx == 0)
+            {
+                 panelInstance = Instantiate(profiles[0]);
+            }
+            else if (indx == 1)
+            {
+                 panelInstance = Instantiate(profiles[1]);
+            }
+            else if (indx == 2)
+            {
+                 panelInstance = Instantiate(profiles[2]);
+            }
 
             //Find ar session component
             var cam = GameObject.Find("AR Session Origin");
             panelInstance.transform.parent = cam.transform;
-            panelInstance.transform.localPosition = new Vector3(0,0,1) * 1.3f;
+            panelInstance.transform.localPosition = new Vector3(0, 0, 1) * 1.3f;
         }
 
         [Serializable]
@@ -94,27 +110,43 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
-                    StartCoroutine(runSocialTimer0());
-                    testParentingFunction();
+                    //StartCoroutine(runSocialTimer0());
+                    spawnProfile(0);
+                }
+                else if (trackedImage.referenceImage.name == "Cover1")
+                {
+                    //StartCoroutine(runSocialTimer0());
+                    spawnProfile(1);
+                }
+                else if (trackedImage.referenceImage.name == "Cover2")
+                {
+                    //StartCoroutine(runSocialTimer0());
+                    spawnProfile(2);
                 }
             }
 
             foreach (var trackedImage in args.updated)
             {
-                Vector3 position = trackedImage.transform.position;
-                TrackableInfo info = _trackedImages[trackedImage.trackableId];
+
 
                 //var cam = Camera.main.transform;
                 //panelInstance.transform.position = cam.position + cam.forward;
                 //testObjectInstance.transform.position = cam.position + cam.forward;
 
-                if (trackedImage.referenceImage.name == "HappyFace")
+                Vector3 position = trackedImage.transform.position;
+                TrackableInfo info = _trackedImages[trackedImage.trackableId];
+
+                var step = textSpeed * Time.deltaTime; //calculate distance to move
+                var offset = position + new Vector3(0, 1, 1);
+                if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
                 {
-                    //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+                    panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
                 }
-                //profiles[0].transform.position = Vector3.MoveTowards(profiles[0].transform.position, position, step);
+
                 anchorPoint = position;
-                profiles[0].SetActive(true);
+                //profiles[0].SetActive(true);
+
+
                 info.TrackingStatusText.text = trackedImage.trackingState.ToString();
                 info.PositionTexts[0].text = position.x.ToString("#0.00");
                 info.PositionTexts[1].text = position.y.ToString("#0.00");

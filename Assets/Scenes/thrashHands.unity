@@ -2754,17 +2754,18 @@ MonoBehaviour:
   GazePointer: {fileID: 1715833752}
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
-  timer: 0
+  timer: []
   testObject: {fileID: 4130869741207546342, guid: 1f753edb3d28b7242abfad24dd40acdc, type: 3}
   anchorPoint: {x: 0, y: 0, z: 0}
+  textSpeed: 1
   profiles:
   - {fileID: 3680122311939049561, guid: 824f8356ebf62e840bc65ea2a543c4ac, type: 3}
   - {fileID: 1476460798}
   arImageManager: {fileID: 1865533054}
   testParenting: 0
-  testMovement: 0
-  rotSpeed: 0
-  speed: 0
+  deletePrefab: 0
+  startTimer: 0
+  stopTimer: 0
   trackableInfos:
   - TrackingStatusText: {fileID: 0}
     PositionTexts:
@@ -3177,7 +3178,19 @@ MonoBehaviour:
   debugText: {fileID: 828655151}
   swipeRight:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FadeObject, Assembly-CSharp
+        m_MethodName: FadeOutObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   swipeLeft:
     m_PersistentCalls:
       m_Calls: []
