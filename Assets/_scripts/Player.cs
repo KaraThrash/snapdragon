@@ -130,7 +130,7 @@ public void ScanNewImage(string _name,Vector3 _pos)
           clone.transform.parent = parent_persons;
 
           int count = 0;
-          while(count < 2)
+          while(count <= 2)
           {
             TextHoverPanel newPanel = GetPanel();
             newPanel.gameObject.SetActive(true);
@@ -140,18 +140,9 @@ public void ScanNewImage(string _name,Vector3 _pos)
 
             newPanel.anchorOffset  = new Vector3(0,0,0);
             newPanel.NextStyle(activePanels.Count);
-            newPanel.SetRowInformation(0,_name);
+           // newPanel.SetRowInformation(0,_name);
             newPanel.anchorOffset  += new Vector3(count * positionScale,0 ,0);
-
-            if(count == 0)
-            {
-                clone.GetComponent<Person>().primary = newPanel;
-
-                }else             if(count == 1)
-                            {
-                clone.GetComponent<Person>().secondary = newPanel;
-
-                            }else{clone.GetComponent<Person>().other = newPanel;}
+                    clone.GetComponent<Person>().SetPanel(newPanel);
 
             count++;
               alternate = !alternate;
@@ -509,13 +500,13 @@ newPanel.NextStyle(activePanels.Count);
 
   if(alternate)
   {
-    newPanel.SetRowInformation(0,activePanels.Count.ToString());
+   // newPanel.SetRowInformation(0,activePanels.Count.ToString());
 
     newPanel.anchorOffset  += new Vector3(0,-(activePanels.Count + 1)* positionScale ,-(activePanels.Count + 1)* positionScale);
   }
   else
   {
-      newPanel.SetRowInformation(0,"not " + activePanels.Count.ToString());
+     // newPanel.SetRowInformation(0,"not " + activePanels.Count.ToString());
       newPanel.anchorOffset  += new Vector3(0,(activePanels.Count + 1) *  positionScale ,-(activePanels.Count + 1)* positionScale);
 
   }
