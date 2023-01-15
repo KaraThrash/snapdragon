@@ -45,3 +45,43 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: HappyFace
     m_Texture: {fileID: 2800000, guid: 35279ade8d96bb34fb7e11b2a1ead2fc, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4878024581276072738
+      m_GuidHigh: 6847058030358273925
+    m_SerializedTextureGuid:
+      m_GuidLow: 14903634572835187206
+      m_GuidHigh: 15604969849731686970
+    m_Size: {x: 0.15, y: 0.097039476}
+    m_SpecifySize: 1
+    m_Name: city
+    m_Texture: {fileID: 2800000, guid: 60126a0658aeced43a22f04f66fd8fd8, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5330172579203192102
+      m_GuidHigh: 9147387582651092412
+    m_SerializedTextureGuid:
+      m_GuidLow: 9238173927359044304
+      m_GuidHigh: 9345846291425501579
+    m_Size: {x: 0.15, y: 0.1918684}
+    m_SpecifySize: 1
+    m_Name: chicken
+    m_Texture: {fileID: 2800000, guid: b182dad0963d80348ba1d185af1db381, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5635327583031189185
+      m_GuidHigh: 9248044526708986544
+    m_SerializedTextureGuid:
+      m_GuidLow: 3356581308466208215
+      m_GuidHigh: 4980965890609395576
+    m_Size: {x: 0.12, y: 0.16938236}
+    m_SpecifySize: 1
+    m_Name: TikTokSticker
+    m_Texture: {fileID: 2800000, guid: 86d81dd7f8ea2e9478371c5416f21f45, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5088556053654492219
+      m_GuidHigh: 12414543069090479021
+    m_SerializedTextureGuid:
+      m_GuidLow: 7432307370868559170
+      m_GuidHigh: 16562457085835350683
+    m_Size: {x: 0.13, y: 0.065744676}
+    m_SpecifySize: 1
+    m_Name: uke
+    m_Texture: {fileID: 2800000, guid: fe234d42dc2c67249b12dec8f7aad9e5, type: 3}

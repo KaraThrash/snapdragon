@@ -877,6 +877,57 @@ Transform:
   m_Father: {fileID: 697674523}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &518151490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 518151492}
+  - component: {fileID: 518151491}
+  m_Layer: 0
+  m_Name: Panel Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &518151491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518151490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb995441ef4ff142bc9ff39bb6634ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelInstance: {fileID: 1476460798}
+  imageTracker: {fileID: 1647116435}
+  anchorOffset: {x: 0, y: 0, z: 0}
+  anchor: {fileID: 0}
+  hover: 0
+  speed: 1
+  rotSpeed: 1
+  observer: {fileID: 0}
+--- !u!4 &518151492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518151490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07200544, y: -0.10383032, z: 1.0744369}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519589834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b5b7f25e2c7744134bf7613aaec7f960, type: 3}
@@ -2703,11 +2754,18 @@ MonoBehaviour:
   GazePointer: {fileID: 1715833752}
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
-  timer: 0
+  timer: []
+  testObject: {fileID: 4130869741207546342, guid: 1f753edb3d28b7242abfad24dd40acdc, type: 3}
   anchorPoint: {x: 0, y: 0, z: 0}
+  textSpeed: 1
   profiles:
-  - {fileID: 1476460798}
+  - {fileID: 3680122311939049561, guid: 824f8356ebf62e840bc65ea2a543c4ac, type: 3}
+  - {fileID: 8642695503023489029, guid: 24e433295ea78fc4882f6bc8cf865535, type: 3}
   arImageManager: {fileID: 1865533054}
+  testParenting: 0
+  deletePrefab: 0
+  startTimer: 0
+  stopTimer: 0
   trackableInfos:
   - TrackingStatusText: {fileID: 0}
     PositionTexts:
@@ -3109,6 +3167,8 @@ MonoBehaviour:
   DevicePointer: {fileID: 887101954}
   SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
   swipeDistance: 0.1
+  positionScale: 0.1
+  imgController: {fileID: 0}
   prefab_hoverPanel: {fileID: 5342421687686836589, guid: c06fd27342ac29c4d9379e43dee02e59, type: 3}
   hoverPanel: {fileID: 112063561}
   activePanels:
@@ -3119,10 +3179,9 @@ MonoBehaviour:
   swipeRight:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1647116436}
-        m_TargetAssemblyTypeName: Qualcomm.Snapdragon.Spaces.Samples.ImageTrackingSampleController,
-          Assembly-CSharp
-        m_MethodName: getAnchor
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FadeObject, Assembly-CSharp
+        m_MethodName: FadeOutObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
