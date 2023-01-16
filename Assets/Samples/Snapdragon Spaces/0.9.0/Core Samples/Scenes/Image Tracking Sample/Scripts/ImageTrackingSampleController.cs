@@ -65,21 +65,21 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             //Destroy(panelInstance);
             if (indx == 0)
             {
-                 panelInstance = Instantiate(profiles[0]);
+                 //panelInstance = Instantiate(profiles[0]);
             }
             else if (indx == 1)
             {
-                 panelInstance = Instantiate(profiles[1]);
+                 //panelInstance = Instantiate(profiles[1]);
             }
             else if (indx == 2)
             {
-                 panelInstance = Instantiate(profiles[2]);
+                 //panelInstance = Instantiate(profiles[2]);
             }
 
             //Find ar session component
             var cam = GameObject.Find("AR Session Origin");
-            panelInstance.transform.parent = cam.transform;
-            panelInstance.transform.localPosition = new Vector3(0, 0, 1) * 1.3f;
+            //panelInstance.transform.parent = cam.transform;
+            //panelInstance.transform.localPosition = new Vector3(0, 0, 1) * 1.3f;
         }
 
         [Serializable]
@@ -149,7 +149,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
                 if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
                 {
-                    panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
+                    //panelInstance.transform.position = Vector3.MoveTowards(panelInstance.transform.position, position + offset, step);
                 }
 
                 anchorPoint = position;
