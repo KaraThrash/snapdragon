@@ -1225,7 +1225,7 @@ MonoBehaviour:
   blue_titleBackgroundImage: {fileID: 21300000, guid: 715e244386243dc4e90200c5d1f573a6, type: 3}
   upArrowImage: {fileID: 0}
   downArrowImage: {fileID: 0}
-  headerBackground: {fileID: 0}
+  headerBackground: {fileID: 8858816517367483851}
   backgroundPanel: {fileID: 0}
   blueHeader: {r: 0.7058824, g: 0.79607844, b: 1, a: 1}
   redHeader: {r: 0.96862745, g: 0.6, b: 0.96862745, a: 1}

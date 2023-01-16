@@ -109,6 +109,13 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             foreach (var trackedImage in args.added)
             {
                 _trackedImages.Add(trackedImage.trackableId, trackableInfos[0]);
+
+                if(player != null)
+                {
+
+                  player.ScanNewImage(trackedImage.referenceImage.name,trackedImage.transform.position);
+
+                }
                 if (trackedImage.referenceImage.name == "Pizza")
                 {
                     //StartCoroutine(runSocialTimer0());
@@ -140,12 +147,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 var step = textSpeed * Time.deltaTime; //calculate distance to move
                 var offset = position + new Vector3(0, 1, 1);
 
-                if(player != null)
-                {
 
-                  player.ScanNewImage(trackedImage.referenceImage.name,position);
-
-                }
 
                 if (trackedImage.referenceImage.name == "Pizza" && panelInstance != null)
                 {
